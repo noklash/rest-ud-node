@@ -15,26 +15,39 @@ const getAll = () => {
     return users;
 }
 
-const update = (userId, newDetails) => {
-    // users.map(user, index) => {
-    //     if (user.id === newDetails.id){
+// const update = (userId, newDetails) => {
+//     // users.map(user, index) => {
+//     //     if (user.id === newDetails.id){
             
-    //     }
-    // }
-    users.find((user) => {
-        if (user.id === userId) {
+//     //     }
+//     // }
+//     users.find((user) => {
+//         if (user.id === userId) {
            
-            user = newDetails
-            // console.log(`user id is ${user}`)
-            return user;
-        }
-        return null
-    });
+//             user = newDetails
+//             // console.log(`user id is ${user}`)
+//             return user;
+//         }
+//         return null
+//     });
    
     
 
 
-}
+// }
+
+const update = (userId, newDetails) => {
+    const userToUpdate = users.find((user) => user.id === userId);
+
+    if (userToUpdate) {
+        // Update the user details
+        Object.assign(userToUpdate, newDetails);
+        return userToUpdate; // Return the updated user
+    }
+
+    return null; // Return null if user is not found
+};
+
 
 const insert = (details) => {
     const newUser = { ...details, id: users.length + 1}
