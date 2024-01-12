@@ -36,14 +36,18 @@ router.get('/get/:id', (req, res) => {
     const user = userService.getUser(id);
 
     if (user) {
-        return res.status(StatusCodes.OK).send(user);
-    }
+        return res.status(StatusCodes.OK).send({
+            status: STATUS.success,
+            message: user
+
+        });
+    };
 
     return res.status(StatusCodes.NOT_FOUND).send({
         status: STATUS.failure,
         message: 'NO USER FOUND'
     });
-})
+});
 
 
 router.post('/add', (req, res) => {
@@ -61,12 +65,9 @@ router.put('/update/:id', (req, res) => {
     const { body: user } = req;
 
     const id = parseInt(req.params.id)
-    
-
+   
     const updatedUser = userService.updateUser(id, user)
-    // console.log(updatedUser);
-
-
+  
     if (updatedUser) {
         return res.status(StatusCodes.OK).send(  {
             status: STATUS.success,
