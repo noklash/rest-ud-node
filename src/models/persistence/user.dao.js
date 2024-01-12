@@ -15,25 +15,28 @@ const getAll = () => {
     return users;
 }
 
-// const update = (userId, newDetails) => {
-//     // users.map(user, index) => {
-//     //     if (user.id === newDetails.id){
-            
-//     //     }
-//     // }
-//     users.find((user) => {
-//         if (user.id === userId) {
-           
-//             user = newDetails
-//             // console.log(`user id is ${user}`)
-//             return user;
+// const update = (newDetails) => {
+//     let existingUser = null;
+//     let userIndex;
+
+//     users.map((user, index) => {
+//         if (user.id === newDetails.id){
+//             existingUser = user;
+//             userIndex = index;
 //         }
-//         return null
-//     });
-   
+//     })
     
+//    if(!existingUser) {
+//     return null;
+//    }
+//     const updatedUser = {
+//         ...existingUser,
+//         newDetails
+//     }
 
+//    users.splice(userIndex, 1, updatedUser );
 
+//    return updatedUser
 // }
 
 const update = (userId, newDetails) => {

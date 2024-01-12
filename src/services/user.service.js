@@ -5,7 +5,11 @@ const addUser = (details) => {
 }
 
 const getUser = (userId) => {
-    userDao.get(userId);
+    return userDao.get(userId);
+}
+
+const getAllUsers = () => {
+    return userDao.getAll();
 }
 
 const removeUser = (userId) => {
@@ -19,6 +23,7 @@ const updateUser = (userId, details) => {
 
 export default {
     getUser, 
+    getAllUsers,
     updateUser,
     removeUser,
     addUser
