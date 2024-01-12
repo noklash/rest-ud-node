@@ -53,7 +53,7 @@ const update = (userId, newDetails) => {
 
 
 const insert = (details) => {
-    const newUser = { ...details, id: users.length + 1}
+    const newUser = { id: users.length + 1, ...details }
     users.push(newUser);
 
     return newUser;
@@ -63,7 +63,7 @@ const remove = (userId) => {
     const deleteUser = (user, index) => {
         if(user.id === userId){
             // Remove the array ellement of the found user
-            users.splice(index, deleteCount);
+            users.splice(index);
             return true;
         }
         return false;

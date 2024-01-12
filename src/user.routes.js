@@ -2,7 +2,7 @@ import  express  from "express";
 import { StatusCodes } from "http-status-codes";
 
 import userService from './services/user.service';
-// import { updateUser, addUser} from './services/user.service';
+
 
 const router = express.Router();
 
@@ -15,6 +15,17 @@ const STATUS = {
 router.get('/ping', (req , res ) => {
     res.status(StatusCodes.CREATED)
     res.send( 'OK' );
+});
+
+router.post('/', (req, res) => {
+    const { body: user } = req;
+
+    const addedUser = userService.addUser(user)
+
+    res.status(StatusCodes.CREATED).send(  {
+        status: STATUS.success,
+        user: addedUser 
+    });
 });
 
 router.get('/all', (req, res) => {
@@ -30,7 +41,7 @@ router.get('/all', (req, res) => {
     });
 });
 
-router.get('/get/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     const id = parseInt(req.params.id)
 
     const user = userService.getUser(id);
@@ -38,7 +49,7 @@ router.get('/get/:id', (req, res) => {
     if (user) {
         return res.status(StatusCodes.OK).send({
             status: STATUS.success,
-            message: user
+            user
 
         });
     };
@@ -49,19 +60,29 @@ router.get('/get/:id', (req, res) => {
     });
 });
 
+router.delete('/:id', (req, res) => {
+    const id = parseInt(req.params.id)
 
-router.post('/add', (req, res) => {
-    const { body: user } = req;
+    const deleteUser = userService.removeUser(id);
 
-    const addedUser = userService.addUser(user)
+    if (deleteUser) {
+        return res.status(StatusCodes.OK).send( {
+            status: STATUS.success,
+            message: `User ${id} deleted successfully` 
+        });
+    } else {
+        return res.status(StatusCodes.NOT_FOUND).send(  {
+            status: STATUS.failure,
+            message: `User ${id} not found` 
+        });
+    }
+})
 
-    res.status(StatusCodes.CREATED).send(  {
-        status: STATUS.success,
-        message: addedUser 
-    });
-});
 
-router.put('/update/:id', (req, res) => {
+
+
+
+router.put('/:id', (req, res) => {
     const { body: user } = req;
 
     const id = parseInt(req.params.id)
@@ -71,7 +92,7 @@ router.put('/update/:id', (req, res) => {
     if (updatedUser) {
         return res.status(StatusCodes.OK).send(  {
             status: STATUS.success,
-            message: updatedUser 
+            user: updatedUser 
         });
     } else {
         return res.status(StatusCodes.NOT_FOUND).send(  {
