@@ -83,7 +83,7 @@ router.delete('/:id', (req, res) => {
 
 
 
-router.put('/:id', (req, res) => {
+router.put('/update/:id', (req, res) => {
     const { body: user } = req;
 
     const id = parseInt(req.params.id)
