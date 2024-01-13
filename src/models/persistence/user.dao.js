@@ -15,29 +15,6 @@ const getAll = () => {
     return users;
 }
 
-// const update = (newDetails) => {
-//     let existingUser = null;
-//     let userIndex;
-
-//     users.map((user, index) => {
-//         if (user.id === newDetails.id){
-//             existingUser = user;
-//             userIndex = index;
-//         }
-//     })
-    
-//    if(!existingUser) {
-//     return null;
-//    }
-//     const updatedUser = {
-//         ...existingUser,
-//         newDetails
-//     }
-
-//    users.splice(userIndex, 1, updatedUser );
-
-//    return updatedUser
-// }
 
 const update = (userId, newDetails) => {
     const userToUpdate = users.find((user) => user.id === userId);

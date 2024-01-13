@@ -17,7 +17,7 @@ router.get('/ping', (req , res ) => {
     res.send( 'OK' );
 });
 
-router.post('/', (req, res) => {
+router.post('/add', (req, res) => {
     const { body: user } = req;
 
     const addedUser = userService.addUser(user)
