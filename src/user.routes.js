@@ -64,6 +64,7 @@ router.delete('/:id', (req, res) => {
     const id = parseInt(req.params.id)
 
     const deleteUser = userService.removeUser(id);
+    console.log(deleteUser);
 
     if (deleteUser) {
         return res.status(StatusCodes.OK).send( {
