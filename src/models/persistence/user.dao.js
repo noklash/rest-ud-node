@@ -1,15 +1,10 @@
 import users from '../data/users.data';
 
 const get = (userId) => {
-    const findUser = users.find((user) => {
-        if (user.id === userId) {
-            return user;
-        }
-        return null
-    });
-
+    const findUser = users.find((user) => user.id === userId)
     return findUser;
 }
+
 
 const getAll = () => {
     return users;

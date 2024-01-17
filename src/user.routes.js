@@ -62,20 +62,19 @@ router.get('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const id = parseInt(req.params.id)
+    const user = userService.getUser(id);
 
-    const deleteUser = userService.removeUser(id);
-    console.log(deleteUser);
-
-    if (deleteUser) {
-        return res.status(StatusCodes.OK).send( {
+    if (user){
+        userService.removeUser(id);
+        return res.status(StatusCodes.OK).send(  {
             status: STATUS.success,
             message: `User ${id} deleted successfully` 
         });
-    } else {
-        return res.status(StatusCodes.NOT_FOUND).send(  {
+    }else {
+        return res.status(StatusCodes.NOT_FOUND).send({
             status: STATUS.failure,
             message: `User ${id} not found` 
-        });
+        })
     }
 })
 
