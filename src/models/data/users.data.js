@@ -5,7 +5,7 @@ const users = [
         email: "goodluck@gmail.com",
         city: "Port harcourt",
         country: "Nigeria",
-        gender: "male",
+        
     },
 
     {
@@ -14,7 +14,7 @@ const users = [
         email: "lexi@gmail.com",
         city: "Port harcourt",
         country: "Nigeria",
-        gender: "female",
+        
     }
     
 

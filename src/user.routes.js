@@ -1,7 +1,9 @@
 import  express  from "express";
 import { StatusCodes } from "http-status-codes";
+import {expressYupMiddleware } from 'express-yup-middleware'
 
 import userService from './services/user.service';
+import { addUser } from "./user.schemas";
 
 
 const router = express.Router();
@@ -12,17 +14,17 @@ const STATUS = {
     failure: 'NO'
 }
 
-router.get('/ping', (req , res ) => {
-    res.status(StatusCodes.CREATED)
-    res.send( 'OK' );
-});
 
-router.post('/add', (req, res) => {
+
+router.post(
+    '/add', 
+    expressYupMiddleware({schemaValidator: addUser, expectedStatusCode: StatusCodes.BAD_REQUEST}), 
+    (req, res) => {
     const { body: user } = req;
 
     const addedUser = userService.addUser(user)
 
-    res.status(StatusCodes.CREATED).send(  {
+    res.status(StatusCodes.CREATED).send({
         status: STATUS.success,
         user: addedUser 
     });
@@ -39,6 +41,11 @@ router.get('/all', (req, res) => {
         status: STATUS.failure,
         message: 'NO USERS FOUND'
     });
+});
+
+router.get('/ping', (req , res ) => {
+    res.status(StatusCodes.CREATED)
+    res.send( 'OK' );
 });
 
 router.get('/:id', (req, res) => {
