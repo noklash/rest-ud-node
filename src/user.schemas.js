@@ -14,3 +14,16 @@ export const addUser = {
     }
 }
 
+export const updateUser = {
+    schema: {
+        body: {
+            yupSchema: yup.object().shape({
+                name: yup.string(),
+                email: yup.string().email(),
+                city: yup.string(),
+                country: yup.string()
+            })
+        }
+    }
+}
+
