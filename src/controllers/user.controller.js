@@ -1,6 +1,34 @@
 import userService from "../services/user.service";
 import { StatusCodes } from "http-status-codes";
 
+const STATUS = {
+    success: 'OK',
+    failure: 'NO'
+}
+
+
+/**
+ * creates a user
+ * @param {*} req 
+ * @param {*} res 
+ */
+const addUser =  (req, res) => {
+    const { body: user } = req;
+
+    const addedUser = userService.addUser(user)
+
+    res.status(StatusCodes.CREATED).send({
+        status: STATUS.success,
+        user: addedUser 
+    });
+}
+
+/**
+ * updates a user
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 const updateUser = (req, res) => {
     const { body: user } = req;
 
@@ -21,17 +49,13 @@ const updateUser = (req, res) => {
     }
 }
 
-const addUser =  (req, res) => {
-    const { body: user } = req;
 
-    const addedUser = userService.addUser(user)
-
-    res.status(StatusCodes.CREATED).send({
-        status: STATUS.success,
-        user: addedUser 
-    });
-}
-
+/**
+ * gets a user
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 const getUser = (req, res) => {
     const id = parseInt(req.params.id)
 
@@ -64,6 +88,12 @@ const getAllUsers = (req, res) => {
     });
 }
 
+/**
+ * deletes a user
+ * @param {} req 
+ * @param {*} res 
+ * @returns 
+ */
 const deleteUser = (req, res) => {
     const id = parseInt(req.params.id)
     const user = userService.getUser(id);
