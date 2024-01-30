@@ -1,6 +1,7 @@
 import  express  from "express";
 import helmet from "helmet";
 
+
 import mainRoutes from './main.routes';
 import userRoutes from './user.routes';
 
@@ -12,7 +13,7 @@ import compression from "compression";
 
 const limiter = rateLimit({
 	windowMs:  60 * 1000, // 1 minute
-	limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+	limit: 10, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
 })
 
 // Compresses the api

@@ -13,13 +13,13 @@ const router = express.Router();
 // CREATE
 router.post(
     '/add', 
-    expressYupMiddleware({schemaValidator: updateUser, expectedStatusCode: StatusCodes.BAD_REQUEST}),
+    expressYupMiddleware({schemaValidator: addUser, expectedStatusCode: StatusCodes.BAD_REQUEST}),
     userController.addUser
 );
 
 // UPDATE 
 router.put('/update/:id', 
-    expressYupMiddleware({schemaValidator: addUser, expectedStatusCode: StatusCodes.BAD_REQUEST}),
+    expressYupMiddleware({schemaValidator: updateUser, expectedStatusCode: StatusCodes.BAD_REQUEST}),
     userController.updateUser
 );
 
