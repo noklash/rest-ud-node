@@ -85,6 +85,7 @@ const getAllUsers = (req, res) => {
     const users = userService.getAllUsers();
 
     if (users.length) {
+        logger.info("getting all users")
         return res.status(StatusCodes.OK).send(users);
     }
 

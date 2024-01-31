@@ -1,12 +1,12 @@
 import  express  from "express";
 import helmet from "helmet";
-
+import cors from 'cors'
 
 import mainRoutes from './main.routes';
 import userRoutes from './user.routes';
 
 const app = express();
-const port = 3000;
+const port = 8080;
 // API REATE LIMIT
 import { rateLimit } from 'express-rate-limit'
 import compression from "compression";
@@ -18,6 +18,9 @@ const limiter = rateLimit({
 
 // Compresses the api
 app.use(compression())
+
+// cors
+app.use(cors())
 
 // Apply the rate limiting middleware to all requests.
 app.use(limiter)
