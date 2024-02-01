@@ -1,13 +1,18 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { Container } from 'react-bootstrap'
 import ReadUsers from './components/ReadUsers';
 
-export default() =>  {
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const App = () =>  {
   return (
-    <div className="App">
-     <ReadUsers/>
-    </div>
+    <>
+      <Container>
+        <ReadUsers/>
+      </Container>
+    </>
   );
 }
 
-
+export default App
