@@ -19,9 +19,6 @@ const limiter = rateLimit({
 // Compresses the api
 app.use(compression())
 
-// cors
-app.use(cors())
-
 // Apply the rate limiting middleware to all requests.
 app.use(limiter)
 
@@ -31,6 +28,9 @@ app.use(express.json());
 
 // helmet protects the api 
 app.use(helmet());
+
+// cors
+app.use(cors())
 
 app.use('/v1/', mainRoutes )
 app.use('/v1/user', userRoutes);

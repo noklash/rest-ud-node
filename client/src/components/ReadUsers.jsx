@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { Card, Col, Container, Row} from 'react-bootstrap'
 import axios from 'axios'
 
 const ReadUsers = () => {
@@ -14,24 +15,32 @@ const ReadUsers = () => {
         fetchUsers()
     }, [])
 
+    const RenderedUsers = users.map((user) => {
+        return (
+            <>
+                <Row className='justify-content-center'>
+                    <Col>
+                        <Card.Body>
+                            <h4>{user.name}</h4>
+                            <p>{user.email}</p>
+                        </Card.Body>
+                    </Col>
+                </Row>
+            </>
+          )
+    })
+ 
 
   return (
-    <div>
-        <h3 className='text-center m-2 font-bold text-2xl'>Users</h3>
-       {users.map((user) =>  (
         <>
-            <div className='m-4 flex rounded  justify-center shadow-lg w-56 border-2 border-l-yellow-900'>
-                <div className='flex flex-col p-1'>
-                    <h4>{user.name}</h4>
-                    <p>{user.email}</p>
-                </div>
-            </div>
+            <Container fluid>
+            <h3 className='text-center m-2 font-bold text-2xl'>Users</h3>
+                <Row className='justify-content-md-center'>
+                    {RenderedUsers}
+                </Row>
+            </Container>
         </>
        )
-       
-        )}
-    </div>
-  )
 }
 
 export default ReadUsers
